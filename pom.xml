@@ -15,13 +15,20 @@
 
 	<modules>
 		<module>netty4</module>
+		<module>guava</module>
 	</modules>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<!-- use 3.2.0 for Java 8 projects -->
+			<version>2.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
