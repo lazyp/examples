@@ -1,0 +1,7 @@
+.settings
+.project
+
+*.log
+
+target
+bin
