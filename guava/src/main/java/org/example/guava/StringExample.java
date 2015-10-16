@@ -1,6 +1,7 @@
 package org.example.guava;
 
 import com.google.common.base.CharMatcher;
+import com.google.common.base.Strings;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -20,5 +21,11 @@ public class StringExample {
         assertThat(CharMatcher.BREAKING_WHITESPACE.trimFrom(str)).isEqualTo(
                 "a bc"); // 去掉首尾的换行符、制表符、空格
         // CharMatcher.BREAKING_WHITESPACE.trimFrom(null);//请注意会抛出null指针异常
+
+        /* 判断字符串是否为null or "" */
+        assertThat(Strings.isNullOrEmpty(null)).isTrue();
+        assertThat(Strings.isNullOrEmpty("")).isTrue();
+        assertThat(Strings.isNullOrEmpty(" ")).isFalse();
+        assertThat(Strings.isNullOrEmpty("abc")).isFalse();
     }
 }
