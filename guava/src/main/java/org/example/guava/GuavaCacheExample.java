@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.*;
  * </pre>
  *
  */
-public class CacheExample {
+public class GuavaCacheExample {
     private static ConcurrentHashMap<String, String> DB_MAP = new ConcurrentHashMap<>();
 
     static {
