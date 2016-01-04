@@ -10,6 +10,16 @@ import com.google.common.cache.LoadingCache;
 
 import static org.assertj.core.api.Assertions.*;
 
+/**
+ * 
+ * 基于guava构建一个内存缓存:
+ * 
+ * <pre>
+ * 1.值5s过期(expireAfterWrite)
+ * 2.缓存不存在的时候，从db自动加载(CacheLoader抽象类)
+ * </pre>
+ *
+ */
 public class CacheExample {
     private static ConcurrentHashMap<String, String> DB_MAP = new ConcurrentHashMap<>();
 
@@ -20,9 +30,7 @@ public class CacheExample {
     }
 
     public static void main(String[] args) {
-        /*
-         * 构建一个缓存 1.值5s过期(expireAfterWrite) 2.缓存不存在的时候，从db自动加载(CacheLoader抽象类)
-         */
+
         LoadingCache<String, String> cache = CacheBuilder.newBuilder().expireAfterWrite(5L, TimeUnit.SECONDS)
                 .build(new CacheLoader<String, String>() {
                     @Override
@@ -36,7 +44,7 @@ public class CacheExample {
             DB_MAP.put("k1", "v1_1");// 改变对应的值
             assertThat(cache.get("k1")).isEqualTo("v1");// 由于缓存未过期，所以值依然是v1
             Thread.sleep(5100L);
-            assertThat(cache.get("k1")).isEqualTo("v1_1");// 休眠5秒100毫秒后，缓存已过期，会自动加载最新的值，所以是"v1_1"
+            assertThat(cache.get("k1")).isEqualTo("v1_1");// 休眠5秒100毫秒后，缓存已过期，会自动调用CacheLoader的load方法加载最新的值，所以是"v1_1"
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
