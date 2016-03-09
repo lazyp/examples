@@ -16,6 +16,7 @@
 	<modules>
 		<module>netty4</module>
 		<module>guava</module>
+		<module>jsonrpc4j</module>
 	</modules>
 
 	<dependencies>
