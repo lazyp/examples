@@ -17,6 +17,7 @@
 		<module>netty4</module>
 		<module>guava</module>
 		<module>jsonrpc4j</module>
+	 <module>jedis</module>
 	</modules>
 
 	<dependencies>
